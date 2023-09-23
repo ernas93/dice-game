@@ -1,13 +1,12 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import Match from './components/Match';
 
 import './index.scss';
 
-const App = () => (
-  <div>
-    <h1>It works!</h1>
-  </div>
-);
+const App = () => {
+  return <Match />;
+};
 
 const container = document.getElementById('app');
 const root = createRoot(container);
