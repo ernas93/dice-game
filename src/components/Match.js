@@ -5,6 +5,15 @@ const Match = () => {
   const [scoreToWin, setScoreToWin] = useState();
   const [players, setPlayers] = useState([]);
   const [matchId, setMatchId] = useState('');
+  const [activePlayerIndex, setActivePlayerIndex] = useState(0);
+
+  const updateCurrentPlayer = () => {
+    if (activePlayerIndex + 1 > players.length - 1) {
+      setActivePlayerIndex(0);
+    } else {
+      setActivePlayerIndex(activePlayerIndex + 1);
+    }
+  };
 
   useEffect(() => {
     fetch('http://localhost:8000/api/game')
@@ -20,8 +29,15 @@ const Match = () => {
     <>
       <div>blabla {scoreToWin}</div>
       <div>
-        {players.map((player) => {
-          return <Player player={player}></Player>;
+        {players.map((player, index) => {
+          return (
+            <Player
+              key={player.id}
+              player={player}
+              isActive={index === activePlayerIndex}
+              updateCurrentPlayer={updateCurrentPlayer}
+            ></Player>
+          );
         })}
       </div>
       <div>blabla {matchId}</div>
