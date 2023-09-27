@@ -10,7 +10,7 @@ const Player = ({ player, isActive, updateMatch }) => {
 
   useEffect(() => {
     if (score > 0) {
-      updateMatch(score);
+      updateMatch(score, player);
     }
   }, [score]);
 
