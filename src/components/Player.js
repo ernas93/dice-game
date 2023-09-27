@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function randomIntFromInterval(min, max) {
   // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-const Player = ({ player, isActive, updateCurrentPlayer }) => {
+const Player = ({ player, isActive, updateMatch }) => {
   const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    if (score > 0) {
+      updateMatch(score);
+    }
+  }, [score]);
 
   const onRoll = () => {
     setScore(score + randomIntFromInterval(1, 6));
-    updateCurrentPlayer();
   };
 
   return (

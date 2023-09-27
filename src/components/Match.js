@@ -6,6 +6,7 @@ const Match = () => {
   const [players, setPlayers] = useState([]);
   const [matchId, setMatchId] = useState('');
   const [activePlayerIndex, setActivePlayerIndex] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
   const updateCurrentPlayer = () => {
     if (activePlayerIndex + 1 > players.length - 1) {
@@ -15,11 +16,18 @@ const Match = () => {
     }
   };
 
+  const updateMatch = (score) => {
+    updateCurrentPlayer();
+    if (score >= scoreToWin) {
+      setGameOver(true);
+    }
+  };
+
   useEffect(() => {
     fetch('http://localhost:8000/api/game')
       .then((response) => response.json())
       .then((data) => {
-        setScoreToWin(data.scoreToWin);
+        setScoreToWin(8 || data.scoreToWin);
         setMatchId(data.matchId);
         setPlayers(data.players);
       });
@@ -29,6 +37,7 @@ const Match = () => {
     <>
       <div className="match-id">Match ID: {matchId}</div>
       <h1 className="game-name">DICE GAME</h1>
+      {gameOver && <h2>Game over, winner is: </h2>}
       <div className="score-to-win">Score to win: {scoreToWin}</div>
       <div className="grid">
         {players.map((player, index) => {
@@ -36,8 +45,8 @@ const Match = () => {
             <Player
               key={player.id}
               player={player}
-              isActive={index === activePlayerIndex}
-              updateCurrentPlayer={updateCurrentPlayer}
+              isActive={index === activePlayerIndex && !gameOver}
+              updateMatch={updateMatch}
             ></Player>
           );
         })}
