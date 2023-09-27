@@ -27,8 +27,10 @@ const Match = () => {
 
   return (
     <>
-      <div>blabla {scoreToWin}</div>
-      <div>
+      <div className="match-id">Match ID: {matchId}</div>
+      <h1 className="game-name">DICE GAME</h1>
+      <div className="score-to-win">Score to win: {scoreToWin}</div>
+      <div className="grid">
         {players.map((player, index) => {
           return (
             <Player
@@ -40,7 +42,6 @@ const Match = () => {
           );
         })}
       </div>
-      <div>blabla {matchId}</div>
     </>
   );
 };

@@ -1,5 +1,62 @@
 html,
 body {
+  font-family: sans-serif;
   padding: 0;
   margin: 0;
+}
+
+button {
+  font-family: inherit;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.grid-item {
+  padding: 10px;
+  border-color: #000000;
+  border-radius: 15px;
+  background-color: rgb(96, 142, 142);
+}
+
+.player-img {
+  max-width: 100%;
+  margin: auto;
+  display: block;
+  background-color: rgb(14, 31, 75);
+  border-radius: 15px;
+}
+
+.match-id {
+  text-align: right;
+  padding: 25px;
+}
+
+.game-name {
+  text-align: center;
+}
+
+.score-to-win {
+  text-align: center;
+  padding: 5px;
+  margin: 25px;
+  margin-bottom: 120px;
+}
+
+@media all and (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media all and (max-width: 568px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }

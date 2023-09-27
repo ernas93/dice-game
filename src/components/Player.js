@@ -14,11 +14,11 @@ const Player = ({ player, isActive, updateCurrentPlayer }) => {
   };
 
   return (
-    <div>
+    <div className="grid-item">
       <h4>Name: {player.name}</h4>
-      <img src={player.imageUrl} />
+      <img className="player-img" src={player.imageUrl} />
       <p>Score: {score}</p>
-      <button onClick={onRoll} disabled={!isActive}>
+      <button onClick={onRoll} disabled={!isActive} className="dice-button">
         Roll the dice
       </button>
     </div>
